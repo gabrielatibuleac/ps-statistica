@@ -1,1 +1,69 @@
+ex lab 
+1.3
+data = read.csv("life_expect .csv", header = T, sep=',')
 
+head(data)
+par(mfrow = c(1, 2))
+female = data[['female']]
+male = data[['male']]
+hist(female,  breaks = 7)
+hist(male,breaks = 7)
+3.1
+outliers_mean=function(n)
+{
+  n=length(x);
+  d=as
+  left=m-2*s;
+  right=m+2*s;
+  y=vector();
+  j=i;
+  for(i in 1:n)
+    if(x[i]<left || x[i]>right)
+    {
+      y[j]=x[i];
+      j=j-i;
+    }
+  print(left);
+  print(right);
+  print(y);
+}
+
+3.3
+sample2 = scan("sample2.txt")
+
+summary(sample2)
+
+outliers_mean = function(x) {
+  m = mean(x)
+  s = sd(x)
+  j = 0
+  outliers = c()
+  
+  for (i in 1:length(x)) {
+    if (x[i] < (m - 2*s) || x[i] > (m + 2*s)) {
+      j = j + 1
+      outliers[j] = x[i]
+    }
+  }
+  
+  return(outliers)
+}
+
+outliers_iqr = function(x) {
+  q = quantile(x) # q[2] - primul quantile, q[4] - al treilea quantile
+  iqr = IQR(x) # IQR = Q3 − Q1
+  j = 0
+  outliers = c()
+  
+  for (i in 1:length(x)) {
+    if (x[i] < (as.vector(q)[2] - 1.5*iqr) || x[i] > (as.vector(q)[4] + 1.5*iqr)) {
+      j = j + 1
+      outliers[j] = x[i]
+    }
+  }
+  
+  return(outliers)
+}
+
+outliers_mean(sample2)
+outliers_iqr(sample2)
